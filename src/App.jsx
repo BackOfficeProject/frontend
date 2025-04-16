@@ -1,11 +1,15 @@
-import "./App.css";
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import { AuthProvider } from "./store/AuthContext";
+import { AppRouter } from "./router";
 
-function App() {
+export function App() {
   return (
-    <>
-      <div>백오피스</div>
-    </>
+    <AuthProvider>
+      <Router>
+        <AppRouter />
+      </Router>
+    </AuthProvider>
   );
 }
-
 export default App;
