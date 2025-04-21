@@ -97,14 +97,14 @@ export function EmployeeFilters({ filters, onFilterChange }) {
             placeholder="이름 또는 이메일로 검색"
             value={filters.search}
             onChange={handleSearch}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+            className="w-full h-11 pl-10 pr-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
           />
-          <SearchIcon className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+          <SearchIcon className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
         </div>
         <div className="lg:col-span-3">
           <Dropdown label="부서" badge={filters.department.length || null}>
             {departments.map((dept) => (
-              <div key={dept.id} className="px-1">
+              <div key={dept.id} className="px-1 h-11">
                 <Checkbox
                   label={dept.label}
                   icon={dept.icon}
@@ -124,7 +124,7 @@ export function EmployeeFilters({ filters, onFilterChange }) {
               type="date"
               value={filters.joinDateRange.from || ""}
               onChange={(e) => handleDateChange("from", e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              className="w-full h-11 pl-10 pr-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
               placeholder="입사일"
             />
           </div>
@@ -152,7 +152,7 @@ export function EmployeeFilters({ filters, onFilterChange }) {
                     : [...filters.status, status];
                   onFilterChange({ status: newStatuses });
                 }}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`h-11 px-4 rounded-lg text-sm font-medium transition-colors flex items-center ${
                   filters.status.includes(status)
                     ? "bg-indigo-100 text-indigo-800 hover:bg-indigo-200"
                     : "bg-gray-100 text-gray-600 hover:bg-gray-200"
