@@ -6,7 +6,7 @@ export function FilterBadge({ label, onRemove }) {
       <span>{label}</span>
       <button
         onClick={onRemove}
-        className="ml-1 hover:text-indigo-900"
+        className="ml-1 hover:text-indigo-900 "
         aria-label="Remove filter"
       >
         <XIcon size={14} />
