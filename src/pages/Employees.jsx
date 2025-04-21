@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { PlusIcon, DownloadIcon } from "lucide-react";
 import { EmployeeFilters } from "./Employees/EmployeeFilters";
 import { EmployeeTable } from "./Employees/EmployeeTable";
+import { EmployeeForm } from "../components/employees/EmployeeForm";
 function Employees() {
+  const [showForm, setShowForm] = useState(false);
   const [filters, setFilters] = useState({
     search: "",
     department: [],
@@ -13,7 +15,7 @@ function Employees() {
       to: null,
     },
   });
-  const employees = [
+  const [employees, setEmployees] = useState([
     {
       id: 1,
       name: "김민준",
@@ -114,9 +116,16 @@ function Employees() {
       joinDate: "2023-05-09",
       phone: "010-0123-4567",
     },
-  ];
+  ]);
   const handleFilterChange = (newFilters) => {
     setFilters((prev) => ({ ...prev, ...newFilters }));
+  };
+  const handleAddEmployee = (newEmployee) => {
+    const newId = employees.length ? employees[employees.length - 1].id + 1 : 1;
+    setEmployees((prev) => [
+      ...prev,
+      { ...newEmployee, id: newId, status: "재직" },
+    ]);
   };
   return (
     <div className="space-y-6">
@@ -127,7 +136,10 @@ function Employees() {
             <DownloadIcon size={20} className="mr-2" />
             내보내기
           </button>
-          <button className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 flex items-center">
+          <button
+            onClick={() => setShowForm(true)}
+            className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 flex items-center"
+          >
             <PlusIcon size={20} className="mr-2" />
             임직원 추가
           </button>
@@ -141,7 +153,14 @@ function Employees() {
         />
         <EmployeeTable filters={filters} employees={employees} />
       </div>
+      {showForm && (
+        <EmployeeForm
+          onClose={() => setShowForm(false)}
+          onSubmit={handleAddEmployee}
+        />
+      )}
     </div>
   );
 }
+
 export default Employees;

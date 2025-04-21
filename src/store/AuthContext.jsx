@@ -11,7 +11,7 @@ export function AuthProvider({ children }) {
     setError(null);
     try {
       // This is a mock login - replace with real API call
-      if (email === "admin@test.com" && password === "password") {
+      if (email === "1234@test.com" && password === "1234") {
         setUser({ email, role: "admin" });
         return true;
       } else {
