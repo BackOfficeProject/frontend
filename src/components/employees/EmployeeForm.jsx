@@ -170,13 +170,13 @@ export function EmployeeForm({ onClose, onSubmit }) {
             )}
           </div>
 
-          {/* 직책 선택 */}
+          {/* 직급 선택 */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              직책
+              직급
             </label>
             <Dropdown
-              label={formData.position || "직책을 선택하세요"}
+              label={formData.position || "직급을 선택하세요"}
               onSelect={(value) => handleDropdownSelect("position", value)}
             >
               {positions.map((pos) => (

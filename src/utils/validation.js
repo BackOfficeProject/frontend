@@ -5,12 +5,15 @@ export function validateEmployeeForm(formData) {
     errors.name = "이름을 입력해주세요.";
   } else if (/\d/.test(formData.name)) {
     errors.name = "이름에 숫자를 포함할 수 없습니다.";
+  } else if (formData.name.length < 2) {
+    errors.name = "최소 2글자를 입력해주세요.";
   }
 
   if (!formData.emailId.trim()) {
     errors.emailId = "이메일을 입력해주세요.";
-  } else if (!/^[a-zA-Z0-9.]+$/.test(formData.emailId)) {
-    errors.emailId = "이메일에는 특수문자를 포함할 수 없습니다.";
+  } else if (!/^[a-zA-Z0-9._-]+$/.test(formData.emailId)) {
+    errors.emailId =
+      "이메일에는 영문, 숫자, 온점(.), 언더스코어(_), 하이픈(-)만 사용할 수 있습니다.";
   }
 
   if (!formData.phone.trim()) {
