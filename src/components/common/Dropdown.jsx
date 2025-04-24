@@ -46,7 +46,7 @@ export function Dropdown({ label, children, badge, onSelect }) {
 
       {isOpen && (
         <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg ">
-          <div className="py-1">
+          <div className="py-1 max-h-40 overflow-y-auto">
             {React.Children.map(children, (child) =>
               React.cloneElement(child, {
                 onClick: () => handleSelect(child.props.children),

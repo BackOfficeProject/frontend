@@ -107,14 +107,14 @@ export function EmployeeForm({ onClose, onSubmit }) {
             <label className="block text-sm font-medium text-gray-700 mb-1">
               이메일
             </label>
-            <div className="flex items-stretch gap-2">
+            <div className="flex items-center gap-2">
               <div className="flex flex-1 items-center border rounded px-3 py-2">
                 <input
                   type="text"
                   name="emailId"
                   value={formData.emailId}
                   onChange={handleChange}
-                  placeholder="honggildong"
+                  placeholder="user"
                   className="flex-1 focus:outline-none"
                 />
                 <span className="ml-2 text-gray-500">@company.com</span>
@@ -122,7 +122,7 @@ export function EmployeeForm({ onClose, onSubmit }) {
               <button
                 type="button"
                 onClick={checkEmailDuplication}
-                className="bg-indigo-500 text-white text-xs px-2 h-11 rounded hover:bg-indigo-600"
+                className="bg-indigo-500 text-white text-xs px-3 py-3 rounded hover:bg-indigo-600"
               >
                 중복 확인
               </button>
@@ -152,18 +152,16 @@ export function EmployeeForm({ onClose, onSubmit }) {
               label={formData.department || "부서를 선택하세요"}
               onSelect={(value) => handleDropdownSelect("department", value)}
             >
-              <div className="max-h-60 overflow-y-auto">
-                {departments.map((dept) => (
-                  <button
-                    type="button"
-                    key={dept}
-                    className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-                    onClick={() => handleDropdownSelect("department", dept)}
-                  >
-                    {dept}
-                  </button>
-                ))}
-              </div>
+              {departments.map((dept) => (
+                <button
+                  type="button"
+                  key={dept}
+                  className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                  onClick={() => handleDropdownSelect("department", dept)}
+                >
+                  {dept}
+                </button>
+              ))}
             </Dropdown>
             {formErrors.department && (
               <p className="text-sm text-red-500 mt-1">
@@ -181,18 +179,16 @@ export function EmployeeForm({ onClose, onSubmit }) {
               label={formData.position || "직책을 선택하세요"}
               onSelect={(value) => handleDropdownSelect("position", value)}
             >
-              <div className="max-h-60 overflow-y-auto">
-                {positions.map((pos) => (
-                  <button
-                    type="button"
-                    key={pos}
-                    className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-                    onClick={() => handleDropdownSelect("position", pos)}
-                  >
-                    {pos}
-                  </button>
-                ))}
-              </div>
+              {positions.map((pos) => (
+                <button
+                  type="button"
+                  key={pos}
+                  className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                  onClick={() => handleDropdownSelect("position", pos)}
+                >
+                  {pos}
+                </button>
+              ))}
             </Dropdown>
             {formErrors.position && (
               <p className="text-sm text-red-500 mt-1">{formErrors.position}</p>
