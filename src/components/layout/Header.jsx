@@ -2,6 +2,10 @@ import React from "react";
 import { BellIcon, MenuIcon, UserIcon, SearchIcon } from "lucide-react";
 
 export function Header() {
+  const reminder = () => {
+    alert("개발 대기 중");
+  };
+
   return (
     <header className="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-6 shadow-sm">
       <div className="flex items-center md:hidden">
@@ -18,7 +22,10 @@ export function Header() {
         <SearchIcon className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
       </div>
       <div className="flex items-center space-x-4">
-        <button className="relative text-gray-600 hover:text-gray-900">
+        <button
+          onClick={() => reminder()}
+          className="relative text-gray-600 hover:text-gray-900"
+        >
           <BellIcon size={20} />
           <span className="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-500"></span>
         </button>

@@ -4,6 +4,7 @@ import {
   ChevronDownIcon,
   MoreHorizontalIcon,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export function EmployeeTable({ filters, employees }) {
   const [sortConfig, setSortConfig] = useState({
@@ -142,7 +143,9 @@ export function EmployeeTable({ filters, employees }) {
                   </div>
                   <div className="ml-4">
                     <div className="text-sm font-medium text-gray-900">
-                      {employee.name}
+                      <Link to={`/employees/${employee.id}`}>
+                        {employee.name}
+                      </Link>
                     </div>
                     <div className="text-sm text-gray-500">
                       {employee.email}
@@ -174,7 +177,10 @@ export function EmployeeTable({ filters, employees }) {
                 </span>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <button className="text-gray-400 hover:text-gray-500">
+                <button
+                  onClick={() => alert(employee.name)}
+                  className="text-gray-400 hover:text-gray-500"
+                >
                   <MoreHorizontalIcon size={16} />
                 </button>
               </td>

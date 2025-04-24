@@ -127,12 +127,19 @@ function Employees() {
       { ...newEmployee, id: newId, status: "재직" },
     ]);
   };
+  const employeeExport = () => {
+    alert("개발 대기 중");
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold text-gray-800">임직원 관리</h1>
         <div className="space-x-4 flex">
-          <button className="px-4 py-2 text-gray-600 hover:text-gray-900 flex items-center">
+          <button
+            onClick={() => employeeExport(true)}
+            className="px-4 py-2 text-gray-600 hover:text-gray-900 flex items-center"
+          >
             <DownloadIcon size={20} className="mr-2" />
             내보내기
           </button>
