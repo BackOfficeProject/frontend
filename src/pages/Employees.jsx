@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { PlusIcon, DownloadIcon } from "lucide-react";
-import { EmployeeFilters } from "./Employees/EmployeeFilters";
-import { EmployeeTable } from "./Employees/EmployeeTable";
+import { EmployeeFilters } from "./employees/EmployeeFilters";
+import { EmployeeTable } from "./employees/EmployeeTable";
 import { EmployeeForm } from "../components/employees/EmployeeForm";
 function Employees() {
   const [showForm, setShowForm] = useState(false);

@@ -7,6 +7,9 @@ const LoginPage = lazy(() => import("../components/auth/LoginPage"));
 const Dashboard = lazy(() => import("../components/dashboard/Dashboard"));
 const Employees = lazy(() => import("../pages/Employees"));
 const EmployeeDetail = lazy(() => import("../pages/Employees/EmployeeDetail"));
+const EmployeeAttendanceDetail = lazy(() =>
+  import("../pages/attendance/AttendanceDetail")
+);
 const Attendance = lazy(() => import("../pages/Attendance"));
 const Recruitment = lazy(() => import("../pages/Recruitment"));
 const Performance = lazy(() => import("../pages/Performance"));
@@ -19,6 +22,7 @@ const components = {
   Dashboard,
   Employees,
   EmployeeDetail,
+  EmployeeAttendanceDetail,
   Attendance,
   Recruitment,
   Performance,
@@ -44,6 +48,10 @@ export function AppRouter() {
           })}
           {/* 사이드바에 추가되지 않고 라우터를 추가할 때 여기 */}
           <Route path={ROUTES.EMPLOYEE_DETAIL} element={<EmployeeDetail />} />
+          <Route
+            path={ROUTES.EMPLOYEES_ATTENDANCE_DETAIL}
+            element={<EmployeeAttendanceDetail />}
+          />
         </Route>
 
         {/* Catch all route */}

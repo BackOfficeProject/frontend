@@ -117,6 +117,18 @@ function Dashboard() {
                 description="정현우님이 이번 주 3회 지각하였습니다"
                 time="2일 전"
               />
+              <Activity
+                icon={<AlertCircleIcon size={16} className="text-red-500" />}
+                title="근태 알림"
+                description="정현우님이 이번 주 3회 지각하였습니다"
+                time="2일 전"
+              />
+              <Activity
+                icon={<AlertCircleIcon size={16} className="text-red-500" />}
+                title="근태 알림"
+                description="정현우님이 이번 주 3회 지각하였습니다"
+                time="2일 전"
+              />
             </div>
           </Card>
         </div>

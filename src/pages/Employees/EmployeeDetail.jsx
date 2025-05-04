@@ -10,11 +10,15 @@ import {
   CalendarIcon,
   GraduationCapIcon,
   ClockIcon,
+  SunIcon,
+  ClipboardListIcon,
 } from "lucide-react";
+import { Link } from "react-router-dom";
+
 const EmployeeDetail = () => {
   // Mock employee data
   const employee = {
-    id: "EMP-2023-0042",
+    id: "1",
     name: "박한경",
     position: "수석 개발자",
     department: "개발부",
@@ -23,49 +27,38 @@ const EmployeeDetail = () => {
     location: "경기도 안양시",
     avatar:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
-
-    startDate: "March 15, 2020",
+    startDate: "2020년 3월 15일",
     manager: "David Wilson",
     team: ["Alex Chen", "Priya Patel", "James Rodriguez"],
     skills: [
-      "Product Strategy",
-      "User Research",
-      "Agile Methodology",
-      "Data Analysis",
-      "Team Leadership",
+      "제품 전략",
+      "사용자 조사",
+      "애자일 방법론",
+      "데이터 분석",
+      "팀 리더십",
     ],
-    education: "MBA, Stanford University",
-    previousRole: "Product Manager at TechCorp",
-    workSchedule: "Monday - Friday, 9:00 AM - 5:00 PM",
+    education: "스탠퍼드 대학교 MBA",
+    previousRole: "TechCorp 제품 관리자",
+    workSchedule: "월요일 - 금요일, 오전 9시 ~ 오후 5시",
     performanceMetrics: [
-      {
-        month: "Jan",
-        score: 92,
-      },
-      {
-        month: "Feb",
-        score: 88,
-      },
-      {
-        month: "Mar",
-        score: 95,
-      },
-      {
-        month: "Apr",
-        score: 90,
-      },
-      {
-        month: "May",
-        score: 94,
-      },
-      {
-        month: "Jun",
-        score: 97,
-      },
+      { month: "1월", score: 92 },
+      { month: "2월", score: 88 },
+      { month: "3월", score: 95 },
+      { month: "4월", score: 90 },
+      { month: "5월", score: 94 },
+      { month: "6월", score: 97 },
     ],
+    remainingLeave: 12,
+    attendance: {
+      last30Days: "근태 양호",
+      lateCount: 1,
+      absentCount: 0,
+    },
   };
+
   return (
-    <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+    <div className="space-y-6">
+      <h1 className="text-2xl font-bold text-gray-800">임직원 상세 정보</h1>
       <ProfileHeader
         name={employee.name}
         position={employee.position}
@@ -95,12 +88,12 @@ const EmployeeDetail = () => {
               </div>
             </div>
           </DetailsSection>
-          <DetailsSection title="직원 정보">
+          <DetailsSection title="직무 정보">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex items-center">
                 <BriefcaseIcon className="h-5 w-5 text-gray-400 mr-2" />
                 <div>
-                  <span className="text-sm font-medium block">Manager</span>
+                  <span className="text-sm font-medium block">관리자</span>
                   <span className="text-sm text-gray-500">
                     {employee.manager}
                   </span>
@@ -109,7 +102,7 @@ const EmployeeDetail = () => {
               <div className="flex items-center">
                 <CalendarIcon className="h-5 w-5 text-gray-400 mr-2" />
                 <div>
-                  <span className="text-sm font-medium block">Start Date</span>
+                  <span className="text-sm font-medium block">입사일</span>
                   <span className="text-sm text-gray-500">
                     {employee.startDate}
                   </span>
@@ -118,9 +111,7 @@ const EmployeeDetail = () => {
               <div className="flex items-center">
                 <BriefcaseIcon className="h-5 w-5 text-gray-400 mr-2" />
                 <div>
-                  <span className="text-sm font-medium block">
-                    Previous Role
-                  </span>
+                  <span className="text-sm font-medium block">이전 직무</span>
                   <span className="text-sm text-gray-500">
                     {employee.previousRole}
                   </span>
@@ -129,7 +120,7 @@ const EmployeeDetail = () => {
               <div className="flex items-center">
                 <GraduationCapIcon className="h-5 w-5 text-gray-400 mr-2" />
                 <div>
-                  <span className="text-sm font-medium block">Education</span>
+                  <span className="text-sm font-medium block">학력</span>
                   <span className="text-sm text-gray-500">
                     {employee.education}
                   </span>
@@ -137,14 +128,14 @@ const EmployeeDetail = () => {
               </div>
             </div>
           </DetailsSection>
-          <DetailsSection title="성과평가">
+          <DetailsSection title="성과 평가">
             <div className="h-64">
               <PerformanceChart data={employee.performanceMetrics} />
             </div>
           </DetailsSection>
         </div>
         <div className="space-y-6">
-          <DetailsSection title="부서 직원">
+          <DetailsSection title="함께 일하는 팀원">
             <ul className="divide-y divide-gray-200">
               {employee.team.map((member, index) => (
                 <li key={index} className="py-2 flex items-center">
@@ -159,7 +150,7 @@ const EmployeeDetail = () => {
               ))}
             </ul>
           </DetailsSection>
-          <DetailsSection title="활용 기술">
+          {/* <DetailsSection title="보유 기술">
             <div className="flex flex-wrap gap-2">
               {employee.skills.map((skill, index) => (
                 <span
@@ -170,17 +161,59 @@ const EmployeeDetail = () => {
                 </span>
               ))}
             </div>
+          </DetailsSection> */}
+          <DetailsSection title="휴가 및 근태">
+            <div className="grid grid-cols-1 gap-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <SunIcon className="h-5 w-5 text-yellow-500 mr-2" />
+                  <div>
+                    <span className="text-sm font-medium block">
+                      휴가 잔여일수
+                    </span>
+                    <span className="text-sm text-gray-500">
+                      {employee.remainingLeave}일
+                    </span>
+                  </div>
+                </div>
+                <a
+                  href={`/employees/${employee.id}/leave`}
+                  className="text-sm text-blue-500 hover:underline"
+                >
+                  자세히 보기
+                </a>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <ClipboardListIcon className="h-5 w-5 text-blue-500 mr-2" />
+                  <div>
+                    <span className="text-sm font-medium block">
+                      최근 30일 근태
+                    </span>
+                    <span className="text-sm text-gray-500">
+                      {employee.attendance.last30Days} (지각{" "}
+                      {employee.attendance.lateCount}회, 결근{" "}
+                      {employee.attendance.absentCount}회)
+                    </span>
+                  </div>
+                </div>
+                <Link to={`/employees/${employee.id}/attendance`}>
+                  자세히 보기
+                </Link>
+              </div>
+            </div>
           </DetailsSection>
-          <DetailsSection title="더보기">
+          <DetailsSection title="기타 작업">
             <div className="space-y-3">
               <button className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                Edit Employee Details
+                임직원 정보 수정
               </button>
               <button className="w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                View Performance History
+                성과 이력 보기
               </button>
               <button className="w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                Schedule Meeting
+                회의 일정 잡기
               </button>
             </div>
           </DetailsSection>
@@ -189,4 +222,5 @@ const EmployeeDetail = () => {
     </div>
   );
 };
+
 export default EmployeeDetail;

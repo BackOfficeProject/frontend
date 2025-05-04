@@ -3,6 +3,7 @@ export const ROUTES = {
   DASHBOARD: "/dashboard",
   EMPLOYEES: "/employees",
   EMPLOYEE_DETAIL: "/employees/:id",
+  EMPLOYEES_ATTENDANCE_DETAIL: "/employees/:id/attendance",
   ATTENDANCE: "/attendance",
   RECRUITMENT: "/recruitment",
   PERFORMANCE: "/performance",
