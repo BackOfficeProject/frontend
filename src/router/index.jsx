@@ -6,7 +6,7 @@ import { PrivateRoutes } from "./PrivateRoutes";
 const LoginPage = lazy(() => import("../components/auth/LoginPage"));
 const Dashboard = lazy(() => import("../components/dashboard/Dashboard"));
 const Employees = lazy(() => import("../pages/Employees"));
-const EmployeeDetail = lazy(() => import("../pages/Employees/EmployeeDetail"));
+const EmployeeDetail = lazy(() => import("../pages/employees/EmployeeDetail"));
 const EmployeeAttendanceDetail = lazy(() =>
   import("../pages/attendance/AttendanceDetail")
 );
