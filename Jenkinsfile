@@ -1,5 +1,9 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'node:18'
+    }
+  }
 
   environment {
     IMAGE_NAME = "frontend-nginx"
@@ -16,10 +20,8 @@ pipeline {
     stage('Build') {
       steps {
         sh '''
-            bash -c "
-                npm install
-                npm run build
-            "
+          npm install
+          npm run build
         '''
       }
     }
@@ -28,12 +30,10 @@ pipeline {
       steps {
         script {
           sh '''
-            bash -c "
-                docker stop ${CONTAINER_NAME} || true
-                docker rm ${CONTAINER_NAME} || true
-                docker build -f nginx/Dockerfile.nginx -t ${IMAGE_NAME} .
-                docker run -d --name ${CONTAINER_NAME} --network my-network -p 80:80 ${IMAGE_NAME}
-            "
+            docker stop ${CONTAINER_NAME} || true
+            docker rm ${CONTAINER_NAME} || true
+            docker build -f nginx/Dockerfile.nginx -t ${IMAGE_NAME} .
+            docker run -d --name ${CONTAINER_NAME} --network my-network -p 80:80 ${IMAGE_NAME}
           '''
         }
       }
