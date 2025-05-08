@@ -75,15 +75,11 @@ export function EmployeeFilters({ filters, onFilterChange }) {
 
   return (
     <div className="p-4 border-b border-gray-200">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-medium text-gray-700 flex items-center">
-          <FilterIcon size={20} className="mr-2" />
-          필터
-        </h2>
+      <div className="flex items-center justify-end">
         {hasActiveFilters && (
           <button
             onClick={clearFilters}
-            className="text-sm text-gray-500 hover:text-gray-700 flex items-center"
+            className="text-sm text-gray-500 hover:text-gray-700 flex items-center mb-4"
           >
             <XIcon size={16} className="mr-1" />
             필터 초기화

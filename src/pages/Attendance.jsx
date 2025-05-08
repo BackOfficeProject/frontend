@@ -8,16 +8,27 @@ import {
   UserXIcon,
   ClockIcon,
 } from "lucide-react";
+import { Dropdown } from "../components/common/Dropdown";
+
+const years = Array.from({ length: 5 }, (_, i) => new Date().getFullYear() - i);
+const months = Array.from({ length: 12 }, (_, i) => i + 1);
+const departments = [
+  "개발팀",
+  "디자인팀",
+  "인사팀",
+  "기획팀",
+  "마케팅팀",
+  "재무팀",
+  "고객지원팀",
+  "품질관리팀",
+];
+const statuses = ["정상 출근", "지각", "결근", "휴가"];
 
 function Attendance() {
-  const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
-
-  const months = Array.from({ length: 12 }, (_, i) => i + 1);
-  const years = Array.from(
-    { length: 5 },
-    (_, i) => new Date().getFullYear() - i
-  );
+  const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
+  const [selectedDepartment, setSelectedDepartment] = useState("부서");
+  const [selectedStatus, setSelectedStatus] = useState("상태");
 
   // 임시 데이터
   const employees = [
@@ -60,28 +71,36 @@ function Attendance() {
         </div>
         <div className="flex items-center space-x-3">
           <div className="flex items-center space-x-2">
-            <select
-              value={selectedYear}
-              onChange={(e) => setSelectedYear(parseInt(e.target.value))}
-              className="border rounded-md px-3 py-2 text-sm"
-            >
-              {years.map((year) => (
-                <option key={year} value={year}>
-                  {year}년
-                </option>
-              ))}
-            </select>
-            <select
-              value={selectedMonth}
-              onChange={(e) => setSelectedMonth(parseInt(e.target.value))}
-              className="border rounded-md px-3 py-2 text-sm"
-            >
-              {months.map((month) => (
-                <option key={month} value={month}>
-                  {month}월
-                </option>
-              ))}
-            </select>
+            <div className="w-24">
+              <Dropdown
+                label={`${selectedYear}`}
+                onSelect={(value) => setSelectedYear(parseInt(value))}
+              >
+                {years.map((year) => (
+                  <button
+                    key={year}
+                    className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                  >
+                    {year}
+                  </button>
+                ))}
+              </Dropdown>
+            </div>
+            <div className="w-20">
+              <Dropdown
+                label={`${selectedMonth}`}
+                onSelect={(value) => setSelectedMonth(parseInt(value))}
+              >
+                {months.map((month) => (
+                  <button
+                    key={month}
+                    className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                  >
+                    {month}
+                  </button>
+                ))}
+              </Dropdown>
+            </div>
           </div>
           <button className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
             <FilterIcon className="h-4 w-4 mr-2" />
@@ -105,14 +124,33 @@ function Attendance() {
               className="w-full pl-10 pr-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-          <button className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-            부서
-            <ChevronDownIcon className="ml-2 h-4 w-4" />
-          </button>
-          <button className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-            근태 상태
-            <ChevronDownIcon className="ml-2 h-4 w-4" />
-          </button>
+          <div className="w-32">
+            <Dropdown
+              label={selectedDepartment}
+              onSelect={setSelectedDepartment}
+            >
+              {departments.map((dept) => (
+                <button
+                  key={dept}
+                  className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                >
+                  {dept}
+                </button>
+              ))}
+            </Dropdown>
+          </div>
+          <div className="w-32">
+            <Dropdown label={selectedStatus} onSelect={setSelectedStatus}>
+              {statuses.map((status) => (
+                <button
+                  key={status}
+                  className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                >
+                  {status}
+                </button>
+              ))}
+            </Dropdown>
+          </div>
         </div>
       </div>
 
