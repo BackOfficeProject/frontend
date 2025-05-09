@@ -53,7 +53,7 @@ function Attendance() {
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
   const [selectedDepartment, setSelectedDepartment] = useState("부서");
   const [selectedPosition, setSelectedPosition] = useState("직급");
-  const [selectedStatus, setSelectedStatus] = useState("상태");
+  const [selectedStatus, setSelectedStatus] = useState("근태");
   const [searchQuery, setSearchQuery] = useState("");
   const [comparisonType, setComparisonType] = useState("monthly"); // 전월 대비 기본값
 
@@ -108,7 +108,7 @@ function Attendance() {
     const matchesPosition =
       selectedPosition === "직급" || employee.position === selectedPosition;
     const matchesStatus =
-      selectedStatus === "상태" ||
+      selectedStatus === "근태" ||
       (selectedStatus === "정상 출근" && employee.attendance.present > 0) ||
       (selectedStatus === "지각" && employee.attendance.late > 0) ||
       (selectedStatus === "결근" && employee.attendance.absent > 0);
@@ -216,11 +216,12 @@ function Attendance() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-800">근태 관리</h1>
-          <p className="text-sm text-gray-500 mt-1">
-            {selectedYear}년 {selectedMonth}월 근태 현황
-          </p>
         </div>
         <div className="space-x-4 flex items-center">
+          <button className="px-4 py-2 text-gray-600 hover:text-gray-900 flex items-center">
+            <DownloadIcon size={20} className="mr-2" />
+            내보내기
+          </button>
           <div className="flex space-x-2">
             {comparisonOptions.map((option) => (
               <button
@@ -239,10 +240,6 @@ function Attendance() {
               </button>
             ))}
           </div>
-          <button className="px-4 py-2 text-gray-600 hover:text-gray-900 flex items-center">
-            <DownloadIcon size={20} className="mr-2" />
-            내보내기
-          </button>
         </div>
       </div>
 
